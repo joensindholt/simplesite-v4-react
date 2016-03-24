@@ -1,0 +1,3 @@
+rootProject.name = 'v4react'
+
+include ':app'
