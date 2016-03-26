@@ -31,22 +31,16 @@ class v4react extends Component {
         };
     }
 
-    componentDidMount() {
-
-    }
+    componentDidMount() {}
 
     render() {
-        console.log('rendering');
-
         if (this.state.customer !== null) {
             // if we have a customer - show him/her
             return this.renderCustomer(this.state.customer);
-        }
-        else if (this.state.loggingIn) {
+        } else if (this.state.loggingIn) {
             // if were logging in - show the loading view
             return this.renderLoadingView();
-        }
-        else {
+        } else {
             // default to the login view
             return this.renderLoginView();
         }
@@ -85,10 +79,7 @@ class v4react extends Component {
         this.api = new api();
         this.api.login(this.state.username, this.state.password).then(json => {
             this.api.getCustomer().then(customer => {
-                this.setState({
-                    customer: customer,
-                    loggingIn: false
-                });
+                this.setState({customer: customer, loggingIn: false});
             });
         }).catch(error => {
             this.setState({loggingIn: false});
@@ -100,17 +91,13 @@ class v4react extends Component {
         return (
             <View style={styles.container}>
                 <View style={styles.inputblock}>
-                    <Text style={{
-                        textAlign: 'center'
-                    }}>Login</Text>
+                    <Text style={styles.welcome}>Login</Text>
                 </View>
                 <View style={styles.inputblock}>
-                    <Text style={{ width: 85 }}>Username</Text>
-                    <TextInput style={styles.textinput} onChangeText={(username) => this.setState({username})} value={this.state.username}/>
+                    <TextInput placeholder="Username" style={styles.textinput} onChangeText={(username) => this.setState({username})} value={this.state.username}/>
                 </View>
                 <View style={styles.inputblock}>
-                    <Text style={{ width: 85 }}>Password</Text>
-                    <TextInput style={styles.textinput} onChangeText={(password) => this.setState({password})} value={this.state.password}/>
+                    <TextInput placeholder="Password" style={styles.textinput} onChangeText={(password) => this.setState({password})} value={this.state.password}/>
                 </View>
                 <View style={styles.inputblock}>
                     <TouchableHighlight style={styles.button} onPress={this.loginClicked.bind(this)}>
@@ -139,16 +126,17 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#F5FCFF'
+        backgroundColor: '#e54d42',
     },
     welcome: {
         fontSize: 20,
         textAlign: 'center',
-        margin: 10
+        margin: 10,
+        color: '#FFF'
     },
     instructions: {
         textAlign: 'center',
-        color: '#333333',
+        color: 'white',
         marginBottom: 5,
         marginTop: 10
     },
@@ -156,9 +144,10 @@ const styles = StyleSheet.create({
         flex: 1,
         padding: 5,
         marginLeft: 10,
-        borderColor: '#666',
+        borderColor: 'white',
         borderWidth: 1,
-        alignSelf: 'stretch'
+        alignSelf: 'stretch',
+        color: 'white'
     },
     inputblock: {
         height: 30,
@@ -169,6 +158,9 @@ const styles = StyleSheet.create({
         marginLeft: 40,
         marginRight: 40,
         alignItems: 'center'
+    },
+    buttonText : {
+        color: 'white'
     }
 });
 
